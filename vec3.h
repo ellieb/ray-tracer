@@ -68,8 +68,6 @@ public:
 using point3 = vec3; // 3D point
 using colour = vec3; // RGB color
 
-#endif
-
 // vec3 Utility Functions
 inline std::ostream &operator<<(std::ostream &out, const vec3 &v)
 {
@@ -120,3 +118,5 @@ inline vec3 unit_vector(vec3 v)
 {
     return v / v.length();
 }
+
+#endif
