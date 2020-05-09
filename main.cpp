@@ -1,22 +1,24 @@
+#include "colour.h"
+
 #include <iostream>
 
 int main()
 {
-    int nx = 200;
-    int ny = 100;
+    const int img_width = 256;
+    const int img_height = 256;
+    const float max_val = 255.999;
+
     std::cout << "P3\n"
-              << nx << " " << ny << "\n255\n";
-    for (int j = ny - 1; j >= 0; j--)
+              << img_width << ' ' << img_height << "\n255\n";
+
+    for (int j = img_height - 1; j >= 0; --j)
     {
-        for (int i = 0; i < nx; i++)
+        std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
+        for (int i = 0; i < img_width; ++i)
         {
-            float r = float(i) / float(nx);
-            float g = float(j) / float(ny);
-            float b = 0.2;
-            int ir = int(255.99 * r);
-            int ig = int(255.99 * g);
-            int ib = int(255.99 * b);
-            std::cout << ir << " " << ig << " " << ib << "\n";
+            colour pixel_colour(float(i) / (img_width - 1), float(j) / (img_height - 1), 0.25);
+            write_colour(std::cout, pixel_colour);
         }
     }
+    std::cerr << "\nDone.\n";
 }
